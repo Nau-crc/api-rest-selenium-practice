@@ -15,6 +15,9 @@ public class LoginPage extends BasePage {
     @FindBy(id = "login")  
     private WebElement loginButton;
 
+    @FindBy(id = "name")
+    private WebElement error;
+
     public LoginPage(WebDriver driver) {
         super(driver);
     }
@@ -25,5 +28,8 @@ public class LoginPage extends BasePage {
         click(loginButton);
     }
 
+    public String errorMessage() {
+        return getText(error);
+    }
     
 }

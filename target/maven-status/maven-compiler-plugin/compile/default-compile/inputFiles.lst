@@ -1,1 +1,8 @@
 /Users/laura/api-rest-selenium-practice/src/main/java/practice/App.java
+/Users/laura/api-rest-selenium-practice/src/main/java/practice/api/LoginApp.java
+/Users/laura/api-rest-selenium-practice/src/main/java/practice/helpers/ApiHelper.java
+/Users/laura/api-rest-selenium-practice/src/main/java/practice/pages/BasePage.java
+/Users/laura/api-rest-selenium-practice/src/main/java/practice/pages/HomePage.java
+/Users/laura/api-rest-selenium-practice/src/main/java/practice/pages/LoginPage.java
+/Users/laura/api-rest-selenium-practice/src/main/java/practice/utils/ConfigReader.java
+/Users/laura/api-rest-selenium-practice/src/main/java/practice/utils/WebDriverManagerUtil.java

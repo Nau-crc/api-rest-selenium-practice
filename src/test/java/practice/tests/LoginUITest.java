@@ -24,5 +24,15 @@ public class LoginUITest extends BaseTest {
         Assert.assertEquals(homePage.userNameLogged(), "TestUser");
         
     }
+
+    @Test
+    public void testLoginFail() {
+        driver.get("https://demoqa.com/login");
+        LoginPage loginPage = new LoginPage(driver);
+
+        loginPage.login("TestUser", "Password!2");
+    
+        Assert.assertEquals(loginPage.errorMessage(), "Invalid username or password!");
+    }
 }
 
