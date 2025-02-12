@@ -1,12 +1,19 @@
 package practice.tests;
 
 
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import com.auth0.jwt.JWT;
 
 import practice.helpers.ApiHelper;
 import practice.pages.HomePage;
 import practice.pages.LoginPage;
+
+import com.auth0.jwt.algorithms.Algorithm;
+import org.openqa.selenium.Cookie;
 
 public class LoginUITest extends BaseTest {
 
@@ -34,5 +41,27 @@ public class LoginUITest extends BaseTest {
     
         Assert.assertEquals(loginPage.errorMessage(), "Invalid username or password!");
     }
+
+    @Test
+    public void testTokenExpired(){
+        long expiredTime = System.currentTimeMillis() - 10 * 1000; 
+
+        String expiredToken = JWT.create()
+                .withClaim("exp", expiredTime / 1000)  
+                .sign(Algorithm.HMAC256("fake-secret")); 
+
+        System.out.println("Token Expirado: " + expiredToken);
+
+        WebDriver driver = new ChromeDriver();
+        driver.get("https://demoqa.com/login");
+
+        Cookie authCookie = new Cookie("token", expiredToken);
+        driver.manage().addCookie(authCookie);
+
+        driver.get("https://demoqa.com/profile");
+        driver.quit();
+    }
+
+
 }
 
