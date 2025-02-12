@@ -8,16 +8,17 @@ public class ApiHelper {
     public static String loginAndGetToken(String username, String password) {
         Response response = RestAssured
             .given()
-            .baseUri("https://demoqa.com/api")
+            .baseUri("https://demoqa.com")
             .contentType("application/json")
-            .body("{\"username\": \"" + username + "\", \"password\": \"" + password + "\"}")
-            .post("/login");
-        
-        // Imprimir la respuesta para verificar el contenido
-        System.out.println("Respuesta de la API: " + response.getBody().asString());
+            .body("{\"userName\": \"" + username + "\", \"password\": \"" + password + "\"}")
+            .post("/Account/v1/Login");
 
         // Recuperar el token de la respuesta JSON
         String token = response.jsonPath().getString("token");
+        if (token == null) {
+            throw new RuntimeException("No se pudo obtener el token. Respuesta: " + response.getBody().asString());
+        }
+        
         return token;
     }
 }

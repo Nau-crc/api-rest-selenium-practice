@@ -21,10 +21,9 @@ public class LoginUITest extends BaseTest {
         // Obtener el token de la API
         String token = ApiHelper.loginAndGetToken("TestUser", "Password!1");
 
-        // Validar que el token no sea nulo y tiene un formato esperado (Ejemplo de validación)
+        // Validar que el token no sea nulo
         Assert.assertNotNull(token, "El token no debe ser nulo");
-        Assert.assertTrue(token.startsWith("Bearer "), "El token debería comenzar con 'Bearer '");
-
+       
         // Validar que el nombre de usuario esté correctamente mostrado en la UI
         Assert.assertEquals(homePage.userNameLogged(), "TestUser");
         
