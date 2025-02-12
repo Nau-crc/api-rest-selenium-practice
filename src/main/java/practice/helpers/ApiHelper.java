@@ -13,7 +13,6 @@ public class ApiHelper {
             .body("{\"userName\": \"" + username + "\", \"password\": \"" + password + "\"}")
             .post("/Account/v1/Login");
 
-        // Recuperar el token de la respuesta JSON
         String token = response.jsonPath().getString("token");
         if (token == null) {
             throw new RuntimeException("No se pudo obtener el token. Respuesta: " + response.getBody().asString());
